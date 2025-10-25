@@ -41,11 +41,8 @@ public class RSAApplication {
     public static void generate() throws IOException {
         BigInteger prime1 = BigInteger.probablePrime(4096, new Random());
         BigInteger prime2 = BigInteger.probablePrime(4096, new Random());
-        //System.out.println("Prime1 definiert: " + prime1);
-        //System.out.println("Prime2 definiert: " + prime2);
         if (!prime1.equals(prime2)) {
             BigInteger n = prime1.multiply(prime2);
-            //System.out.println("n = " + n);
         }
         //phi(n)
         BigInteger phiN = (prime1.subtract(BigInteger.ONE)).multiply(prime2.subtract(BigInteger.ONE)); // (prime1 -1) * (prime2 -1)
@@ -56,7 +53,6 @@ public class RSAApplication {
         // (e×d)modphi(n)=1 auf d aufgelöst: d=e−1(modphi(n)) -> e.modInverse(phiN)
         BigInteger d = e.modInverse(phiN);
 
-        //System.out.println("d = " + d);
 
         //Prüfen, ob das Schlüsselpaar (n,e) und (n,d) gültig sind
         if (!e.multiply(d).mod(phiN).equals(BigInteger.ONE)) {
