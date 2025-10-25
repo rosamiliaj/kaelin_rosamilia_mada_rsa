@@ -38,7 +38,6 @@ public class RSAApplication {
         }
     }
 
-
     public static void generate() throws IOException {
         BigInteger prime1 = BigInteger.probablePrime(4096, new Random());
         BigInteger prime2 = BigInteger.probablePrime(4096, new Random());
@@ -111,7 +110,6 @@ public class RSAApplication {
             for (int i = 0; i < lines.size(); i++) {
                 for (char c : lines.get(i).toCharArray()) {
                     chars.add(modExpo(BigInteger.valueOf((int) c), e, n));
-                    //chars.add(BigInteger.valueOf(c).modPow(e, n));
                 }
             }
             for (int i = 0; i < chars.size(); i++) {
