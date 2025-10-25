@@ -17,23 +17,24 @@ public class RSAApplication {
     public static void main(String[] args) throws IOException {
 
         Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("RSA-Programm!");
+            System.out.println("*******************************************************");
+            System.out.println("Wähle aus:");
+            System.out.println("1 = generate (Schlüssel erzeugen)");
+            System.out.println("2 = encrypt (Text verschlüsseln)");
+            System.out.println("3 = decrypt (Text entschlüsseln)");
+            System.out.println("4 = program exit");
+            System.out.print("Deine Auswahl: ");
+            int auswahl = sc.nextInt();
 
-        System.out.println("RSA-Programm!");
-        System.out.println("*******************************************************");
-        System.out.println("Wähle aus:");
-        System.out.println("1 = generate (Schlüssel erzeugen)");
-        System.out.println("2 = encrypt (Text verschlüsseln)");
-        System.out.println("3 = decrypt (Text entschlüsseln)");
-        System.out.println("4 = program exit");
-        System.out.print("Deine Auswahl: ");
-        int auswahl = sc.nextInt();
-
-        switch (auswahl) {
-            case 1 -> generate();
-            case 2 -> encrypt();
-            case 3 -> decrypt();
-            case 4 -> System.exit(0);
-            default -> System.out.println("Du bisch en Tubbel!");
+            switch (auswahl) {
+                case 1 -> generate();
+                case 2 -> encrypt();
+                case 3 -> decrypt();
+                case 4 -> System.exit(0);
+                default -> System.out.println("Ungültige Auswahl");
+            }
         }
     }
 
@@ -71,7 +72,6 @@ public class RSAApplication {
             writer.write("(" + prime1.multiply(prime2));
             writer.write("," + e + ")");
         }
-        RSAApplication.main(null);
     }
 
     public static void encrypt() throws IOException {
@@ -126,7 +126,6 @@ public class RSAApplication {
             }
         }
         System.out.println("Verschlüsselung wurde erfolgreich ausgeführt. Der verschlüsselte Text kann im chiffre.txt gefunden werden.");
-        RSAApplication.main(null);
     }
 
     // Schnelle Exponentiation
@@ -191,6 +190,5 @@ public class RSAApplication {
             }
         }
         System.out.println("Entschlüsselung wurde erfolgreich durchgeführt. Der entschlüsselte Text kann in text-d.txt gefunden werden.");
-        RSAApplication.main(null);
     }
 }
