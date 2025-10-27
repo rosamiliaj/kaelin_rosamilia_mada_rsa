@@ -50,8 +50,8 @@ public class RSAApplication {
         //e muss Teilerfremd zu phi(n) sein
         BigInteger e = BigInteger.valueOf(65537); // 65537 ist ein Standard-Wert
 
-        // (e×d)modphi(n)=1 auf d aufgelöst: d=e−1(modphi(n)) -> e.modInverse(phiN)
-        BigInteger d = e.modInverse(phiN);
+        // (e×d)modphi(n)=1 auf d aufgelöst: d=e−1(modphi(n)) -> e.eukAlgo(e,phiN)
+        BigInteger d = eukAlgo(e,phiN);
 
 
         //Prüfen, ob das Schlüsselpaar (n,e) und (n,d) gültig sind
@@ -67,6 +67,28 @@ public class RSAApplication {
             writer.write("(" + prime1.multiply(prime2));
             writer.write("," + e + ")");
         }
+    }
+
+    public static BigInteger eukAlgo(BigInteger a, BigInteger m){
+        BigInteger m1 = m;
+        BigInteger y = BigInteger.ZERO;
+        BigInteger x = BigInteger.ONE;
+
+        while (a.compareTo(BigInteger.ONE) > 0){
+            BigInteger q = a.divide(m);
+            BigInteger t = m;
+
+            m = a.mod(m);
+            a = t;
+            t = y;
+
+            y = x.subtract(q.multiply(y));
+            x = t;
+        }
+        if (x.compareTo(BigInteger.ZERO) < 0){
+            x = x.add(m1);
+        }
+        return x;
     }
 
     public static void encrypt() throws IOException {
